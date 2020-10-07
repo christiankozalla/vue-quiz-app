@@ -1,0 +1,26 @@
+{
+  "name": "Vue-Quiz-headsUP",
+  "version": 1,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(js|css|img)/.*",
+      "headers": {
+        "cache-control": "max-age=31536000, immutable"
+      }
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": ".*",
+      "dest": "/"
+    }
+  ],
+  "alias": "example.com"
+}
