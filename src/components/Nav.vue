@@ -11,7 +11,12 @@
       </li>
     </ul>
     <!-- Burger animation needs to be fixed -> defocus with .blur() after click -->
-    <div class="open-overlay" tabindex="0" @click="burgerClickHandler">
+    <div
+      class="open-overlay"
+      id="nav-burger"
+      tabindex="0"
+      @click="burgerClickHandler"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -103,9 +108,23 @@ export default {
 }
 
 @media only screen and (max-width: 650px) {
+  #nav-bar {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  #nav-logo {
+    order: 1;
+  }
+
+  #nav-burger {
+    order: 2;
+  }
+
   #nav-links {
     flex-direction: column;
     align-items: center;
+    order: 3;
   }
 
   #nav-links li {
