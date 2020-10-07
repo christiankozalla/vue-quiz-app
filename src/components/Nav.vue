@@ -1,11 +1,16 @@
 <template>
   <nav id="nav-bar">
     <a href="#" id="nav-logo">headsUP</a>
-    <ul id="nav-links" class="hidden">
+    <ul id="nav-links" :class="{ hidden: !navOpen, animate: navOpen }">
       <li><a href="#">Home</a></li>
-      <li><a href="#">Why headsUP</a></li>
-      <li><a href="#">Start Quiz</a></li>
+      <li>
+        <a href="#"><em>Ta</em>ke Quiz</a>
+      </li>
+      <li>
+        <a href="#"><em>Ma</em>ke Quiz</a>
+      </li>
     </ul>
+    <!-- Burger animation needs to be fixed -> defocus with .blur() after click -->
     <div class="open-overlay" tabindex="0" @click="burgerClickHandler">
       <span></span>
       <span></span>
@@ -17,6 +22,19 @@
 <script>
 export default {
   name: "Nav",
+  data() {
+    return {
+      navOpen: false,
+    };
+  },
+  methods: {
+    burgerClickHandler(event) {
+      this.navOpen = !this.navOpen;
+      setTimeout(() => {
+        event.target.blur();
+      }, 300);
+    },
+  },
 };
 </script>
 
@@ -26,9 +44,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  background-color: #00b8d4;
+  background-color: rgb(102, 255, 166);
   opacity: 0.7;
   box-shadow: 0px 2px 7px;
+  padding-left: 0.5rem;
 }
 
 #nav-bar > * {
@@ -96,7 +115,7 @@ export default {
 
 a {
   padding: 0.7rem 1.2rem;
-  background-color: #62ebff;
+  background-color: rgba(0, 178, 72, 0.5);
   opacity: 0.7;
   box-shadow: 4px 3px;
   text-decoration: none;
@@ -121,22 +140,3 @@ a {
   }
 }
 </style>
-
-<script>
-export default {
-  name: "Nav",
-  methods: {
-    burgerClickHandler() {
-      const navLinks = document.getElementById("nav-links");
-      console.log(navLinks.classList);
-      if (navLinks.classList.contains("hidden")) {
-        navLinks.classList.remove("hidden");
-        navLinks.classList.add("animate");
-      } else if (navLinks.classList.contains("animate")) {
-        navLinks.classList.add("hidden");
-        navLinks.classList.remove("animate");
-      }
-    },
-  },
-};
-</script>

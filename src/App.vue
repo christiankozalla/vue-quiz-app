@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <Nav />
+    <Quiz />
   </div>
 </template>
 
 <script>
 import Nav from "@/components/Nav.vue";
+import Quiz from "@/components/Quiz.vue";
 export default {
   name: "App",
   components: {
     Nav,
+    Quiz,
   },
 };
 </script>
