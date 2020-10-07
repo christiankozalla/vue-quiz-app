@@ -2,7 +2,8 @@
   <div id="quiz-container">
     <h1 id="quiz-headline">headsUP Quiz</h1>
     <div id="streak">
-      Your current Streak is {{ streak }} correct {{ pluralizeAnswer }}
+      You have
+      <strong>{{ correctAnswers }} correct {{ pluralizeAnswer }}!</strong>
     </div>
     <hr class="divider" />
     <div v-for="question in questions" :key="question.key">
@@ -18,6 +19,11 @@
       </form>
       <hr class="divider" />
     </div>
+    <!--     <div v-show="quizCompleted">
+      A Modal should pop down here: - Stats of the previous quiz (percent
+      etc...) - Start a new Quiz? Maybe choose another Category? - Create an
+      Account ? -> Benefits!
+    </div> -->
   </div>
 </template>
 
@@ -30,7 +36,7 @@ export default {
     };
   },
   computed: {
-    streak: function() {
+    correctAnswers: function() {
       if (this.questions && this.questions.length > 0) {
         let streakCounter = 0;
         this.questions.forEach(function(question) {
@@ -47,6 +53,13 @@ export default {
     },
     pluralizeAnswer: function() {
       return this.streak === 1 ? "Answer" : "Answers";
+    },
+    quizCompleted: function() {
+      let questionsAnswered = 0;
+      this.questions.forEach(function(question) {
+        question.rightAnswer !== null ? questionsAnswered++ : null;
+      });
+      return questionsAnswered === this.questions.length;
     },
   },
   methods: {
@@ -80,7 +93,9 @@ export default {
     handleButtonClick: function(event) {
       /* Find index to identiy question object in data */
       let index = event.target.getAttribute("index");
-      let userAnswer = event.target.innerHTML;
+      let pollutedUserAnswer = event.target.innerHTML; // innerHTML is polluted with decoded HTML entities e.g ' from &#039;
+      /* Clear from pollution with ' */
+      let userAnswer = pollutedUserAnswer.replace(/'/, "&#039;");
 
       /* Set userAnswer on question object in data */
       this.questions[index].userAnswer = userAnswer;
@@ -231,8 +246,8 @@ button.clicked {
 
 button.rightAnswer {
   animation: joyfulButton;
-  animation-duration: 2000ms;
-  animation-delay: 200ms;
+  animation-duration: 1700ms;
+  animation-delay: 100ms;
   animation-timing-function: ease;
 }
 
