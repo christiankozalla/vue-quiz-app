@@ -110,7 +110,15 @@ export default {
         /* Set rightAnswer on question to true, computed property can track a streak out of 10 questions */
         this.questions[index].rightAnswer = true;
       } else {
-        this.question[index].rightAnswer = false;
+        this.questions[index].rightAnswer = false;
+        /* Show right Answer */
+        let correctAnswer = this.questions[index].correct_answer;
+        let allButtons = document.querySelectorAll(`[index="${index}"]`);
+        allButtons.forEach(function(button) {
+          if (button.innerHTML === correctAnswer) {
+            button.classList.add("showRightAnswer");
+          }
+        });
       }
     },
   },
@@ -187,7 +195,6 @@ button:active:enabled {
 }
 
 button.clicked {
-  font-size: 1.4rem;
   transform: scale(1.04);
   border: 2px dashed #ff5983;
 }
@@ -207,10 +214,34 @@ button.clicked {
   }
 }
 
+@keyframes showRightAnswer {
+  0% {
+    opacity: 0.5;
+    transform: scale(1.01);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1.01);
+  }
+}
+
 button.rightAnswer {
   animation: joyfulButton;
   animation-duration: 2000ms;
   animation-delay: 200ms;
   animation-timing-function: ease;
+}
+
+button.showRightAnswer {
+  animation: showRightAnswer;
+  animation-duration: 800ms;
+  animation-iteration-count: 3;
+  animation-timing-function: ease-in-out;
+  border: 2px dashed black;
+  color: black;
 }
 </style>
