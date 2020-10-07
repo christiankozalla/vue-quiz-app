@@ -1,6 +1,6 @@
 # headsUP - Vue Quiz App
 
-> > Custom Frontend Quiz App made with (Vue.js)[https://vuejs.org], the (Trivia API)[https://opentdb.com/], and of course :heart:
+> This is a Frontend Quiz App made with [Vue.js](https://vuejs.org), the [Trivia API](https://opentdb.com/), and of course :heart:
 
 ## Project setup
 
