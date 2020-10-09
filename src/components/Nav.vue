@@ -48,7 +48,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   background-color: rgb(102, 255, 166);
   opacity: 0.7;
   box-shadow: 0px 2px 7px;

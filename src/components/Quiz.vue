@@ -1,7 +1,7 @@
 <template>
   <div id="quiz-container">
     <h1 id="quiz-headline">headsUP Quiz</h1>
-    <div id="streak">
+    <div id="correctAnswers">
       You have
       <strong>{{ correctAnswers }} correct {{ pluralizeAnswer }}!</strong>
     </div>
@@ -19,11 +19,6 @@
       </form>
       <hr class="divider" />
     </div>
-    <!--     <div v-show="quizCompleted">
-      A Modal should pop down here: - Stats of the previous quiz (percent
-      etc...) - Start a new Quiz? Maybe choose another Category? - Create an
-      Account ? -> Benefits!
-    </div> -->
   </div>
 </template>
 
@@ -36,6 +31,35 @@ export default {
     };
   },
   computed: {
+    score: function() {
+      if (this.questions !== []) {
+        return {
+          allQuestions: this.questions.length,
+          answeredQuestions: this.questions.reduce((count, currentQuestion) => {
+            if (currentQuestion.userAnswer) {
+              count++;
+            }
+            return count;
+          }, 0),
+          correctlyAnsweredQuestions: this.questions.reduce(
+            (count, currentQuestion) => {
+              if (currentQuestion.rightAnswer) {
+                count++;
+              }
+              return count;
+            },
+            0
+          ),
+        };
+      } else {
+        return {
+          allQuestions: 0,
+          answeredQuestions: 0,
+          correctlyAnsweredQuestions: 0,
+        };
+      }
+    },
+
     correctAnswers: function() {
       if (this.questions && this.questions.length > 0) {
         let streakCounter = 0;
@@ -55,11 +79,27 @@ export default {
       return this.streak === 1 ? "Answer" : "Answers";
     },
     quizCompleted: function() {
+      if (this.questions.length === 0) {
+        return false;
+      }
+
+      /* If a user happens to miss out on a question, the modal shall still be displayed, when the user answeres the last question! */
+      let lastQuestionAnswered =
+        this.questions && this.questions[this.questions.length - 1].userAnswer;
+
+      /* Check if all questions were answered */
       let questionsAnswered = 0;
       this.questions.forEach(function(question) {
         question.rightAnswer !== null ? questionsAnswered++ : null;
       });
-      return questionsAnswered === this.questions.length;
+      return lastQuestionAnswered
+        ? true
+        : questionsAnswered === this.questions.length;
+    },
+  },
+  watch: {
+    quizCompleted: function(completed) {
+      completed && this.$emit("quiz-completed", this.score);
     },
   },
   methods: {
@@ -156,7 +196,7 @@ export default {
   margin-bottom: 0.5rem;
 }
 
-#streak {
+#correctAnswers {
   text-align: center;
 }
 
@@ -210,7 +250,6 @@ button:active:enabled {
 }
 
 button.clicked {
-  transform: scale(1.04);
   border: 2px dashed #ff5983;
 }
 
@@ -221,11 +260,11 @@ button.clicked {
   20% {
     transform: rotate(-40deg);
   }
-  70% {
-    transform: rotate(390deg);
+  85% {
+    transform: rotate(410deg);
   }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -246,7 +285,7 @@ button.clicked {
 
 button.rightAnswer {
   animation: joyfulButton;
-  animation-duration: 1700ms;
+  animation-duration: 1500ms;
   animation-delay: 100ms;
   animation-timing-function: ease;
 }
