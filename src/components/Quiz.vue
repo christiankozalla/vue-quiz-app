@@ -1,17 +1,23 @@
 <template>
   <div id="quiz-container">
-    <h1 id="quiz-headline">headsUP Quiz</h1>
+    <img
+      id="logo"
+      src="@/assets/LogoMakr-5cAPEn.png"
+      alt="headsUP Logo created at Logomakr.com"
+    />
     <div id="correctAnswers">
       You have
       <strong>{{ correctAnswers }} correct {{ pluralizeAnswer }}!</strong>
     </div>
     <hr class="divider" />
-    <div v-for="question in questions" :key="question.key">
-      <h1 v-html="question.question"></h1>
-      <form>
+    <div>
+      <h1
+        v-html="currentQuestion ? currentQuestion.question : 'Loading...'"
+      ></h1>
+      <form v-if="currentQuestion">
         <button
-          v-for="answer in question.answers"
-          :index="question.key"
+          v-for="answer in currentQuestion.answers"
+          :index="currentQuestion.key"
           :key="answer"
           v-html="answer"
           @click.prevent="handleButtonClick"
@@ -28,9 +34,16 @@ export default {
   data() {
     return {
       questions: [],
+      index: 0,
     };
   },
   computed: {
+    currentQuestion: function() {
+      if (this.questions !== []) {
+        return this.questions[this.index];
+      }
+      return null;
+    },
     score: function() {
       if (this.questions !== []) {
         return {
@@ -76,7 +89,7 @@ export default {
       }
     },
     pluralizeAnswer: function() {
-      return this.streak === 1 ? "Answer" : "Answers";
+      return this.correctAnswers === 1 ? "Answer" : "Answers";
     },
     quizCompleted: function() {
       if (this.questions.length === 0) {
@@ -152,6 +165,14 @@ export default {
 
       /* Invoke checkAnswer to check Answer */
       this.checkAnswer(event, index);
+
+      /* Set timeout and switch to next question */
+      setTimeout(
+        function() {
+          this.index += 1;
+        }.bind(this),
+        2200
+      );
     },
     checkAnswer: function(event, index) {
       let question = this.questions[index];
@@ -190,14 +211,9 @@ export default {
   max-width: 750px;
 }
 
-#quiz-headline {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
 #correctAnswers {
   text-align: center;
+  padding-bottom: 2rem;
 }
 
 .divider {
@@ -297,5 +313,11 @@ button.showRightAnswer {
   animation-timing-function: ease-in-out;
   border: 2px dashed black;
   color: black;
+}
+
+#logo {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
 }
 </style>
