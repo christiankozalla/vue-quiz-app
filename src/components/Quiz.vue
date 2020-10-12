@@ -163,38 +163,35 @@ export default {
 
       /* Invoke checkAnswer to check Answer */
       this.checkAnswer(event, index);
-
-      /* Set timeout and switch to next question */
-      if (this.index < this.questions.length - 1) {
-        setTimeout(
-          function() {
-            this.index += 1;
-          }.bind(this),
-          2200
-        );
-      }
     },
     checkAnswer: function(event, index) {
       let question = this.questions[index];
 
-      if (
-        question.userAnswer &&
-        question.userAnswer === question.correct_answer
-      ) {
-        /* Set class on Button if user answered right, to celebrate right answer with animation joyfulButton */
-        event.target.classList.add("rightAnswer");
-        /* Set rightAnswer on question to true, computed property can track a streak out of 10 questions */
-        this.questions[index].rightAnswer = true;
-      } else {
-        this.questions[index].rightAnswer = false;
-        /* Show right Answer */
-        let correctAnswer = this.questions[index].correct_answer;
-        let allButtons = document.querySelectorAll(`[index="${index}"]`);
-        allButtons.forEach(function(button) {
-          if (button.innerHTML === correctAnswer) {
-            button.classList.add("showRightAnswer");
-          }
-        });
+      if (question.userAnswer) {
+        if (this.index < this.questions.length - 1) {
+          setTimeout(
+            function() {
+              this.index += 1;
+            }.bind(this),
+            2200
+          );
+        }
+        if (question.userAnswer === question.correct_answer) {
+          /* Set class on Button if user answered right, to celebrate right answer with animation joyfulButton */
+          event.target.classList.add("rightAnswer");
+          /* Set rightAnswer on question to true, computed property can track a streak out of 10 questions */
+          this.questions[index].rightAnswer = true;
+        } else {
+          this.questions[index].rightAnswer = false;
+          /* Show right Answer */
+          let correctAnswer = this.questions[index].correct_answer;
+          let allButtons = document.querySelectorAll(`[index="${index}"]`);
+          allButtons.forEach(function(button) {
+            if (button.innerHTML === correctAnswer) {
+              button.classList.add("showRightAnswer");
+            }
+          });
+        }
       }
     },
   },
@@ -289,6 +286,7 @@ button:active:enabled {
 
 button.clicked {
   border: 2px dashed #ff5983;
+  pointer-events: none;
 }
 
 @keyframes joyfulButton {
