@@ -53,6 +53,7 @@ export default {
   opacity: 0.7;
   box-shadow: 0px 2px 7px;
   padding-left: 0.5rem;
+  padding-bottom: 0.25rem;
 }
 
 #nav-bar > * {
