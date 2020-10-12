@@ -165,12 +165,14 @@ export default {
       this.checkAnswer(event, index);
 
       /* Set timeout and switch to next question */
-      setTimeout(
-        function() {
-          this.index += 1;
-        }.bind(this),
-        2200
-      );
+      if (this.index < this.questions.length - 1) {
+        setTimeout(
+          function() {
+            this.index += 1;
+          }.bind(this),
+          2200
+        );
+      }
     },
     checkAnswer: function(event, index) {
       let question = this.questions[index];

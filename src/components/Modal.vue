@@ -18,8 +18,8 @@
                     100
                 )
               }}
-              % correctly! ({{ quizScore.answeredQuestions }} out of
-              {{ quizScore.allQuestions }} questions)
+              % correctly! ({{ quizScore.correctlyAnsweredQuestions }} out of
+              {{ quizScore.answeredQuestions }} questions)
             </div>
             <div id="chooseCategory">
               Wanna choose another category? (I am working on this feature!)
