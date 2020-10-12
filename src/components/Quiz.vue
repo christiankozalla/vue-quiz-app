@@ -231,8 +231,18 @@ export default {
 
 #logo-crown {
   display: block;
-  width: 45%;
+  width: 40%;
   margin: 0 auto;
+}
+
+@media only screen and (max-width: 500px) {
+  #logo-crown {
+    width: 30%;
+  }
+
+  #logo-headline {
+    font-size: 1.8rem;
+  }
 }
 
 h1 {
