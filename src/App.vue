@@ -14,10 +14,6 @@
       <p id="createdBy">
         created by <a href="https://devdiary.me">Christian Kozalla</a>
       </p>
-      <p id="logoReference">
-        Logo made with
-        <a href="https://logomakr.com" target="_blank">Logomakr.com</a>
-      </p>
     </footer>
   </div>
 </template>
@@ -65,7 +61,8 @@ export default {
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -81,9 +78,5 @@ footer {
 
 #createdBy {
   float: right;
-}
-
-#logoReference {
-  float: left;
 }
 </style>

@@ -1,10 +1,8 @@
 <template>
   <div id="quiz-container">
-    <img
-      id="logo"
-      src="@/assets/LogoMakr-5cAPEn.png"
-      alt="headsUP Logo created at Logomakr.com"
-    />
+    <img id="logo-crown" src="@/assets/crown.svg" alt="headsUP Crown" />
+    <h1 id="logo-headline">headsUP</h1>
+
     <div id="correctAnswers">
       You have
       <strong>{{ correctAnswers }} correct {{ pluralizeAnswer }}!</strong>
@@ -213,7 +211,6 @@ export default {
 
 #correctAnswers {
   text-align: center;
-  padding-bottom: 2rem;
 }
 
 .divider {
@@ -221,6 +218,19 @@ export default {
   border: 3px solid rgba(102, 255, 166, 0.7);
   border-radius: 2px;
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+#logo-headline {
+  font-size: 3rem;
+  padding: 0.5rem;
+  color: #f50057;
+  text-align: center;
+}
+
+#logo-crown {
+  display: block;
+  width: 45%;
+  margin: 0 auto;
 }
 
 h1 {
@@ -313,11 +323,5 @@ button.showRightAnswer {
   animation-timing-function: ease-in-out;
   border: 2px dashed black;
   color: black;
-}
-
-#logo {
-  display: block;
-  width: 50%;
-  margin: 0 auto;
 }
 </style>
