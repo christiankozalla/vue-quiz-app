@@ -302,7 +302,6 @@ button.rightAnswer {
   animation-duration: 700ms;
   animation-delay: 200ms;
   animation-iteration-count: 3;
-  animation-timing-function: ease-in-out;
   color: black;
   background: linear-gradient(
     210deg,
@@ -324,8 +323,7 @@ button.showRightAnswer {
   animation: flashButton;
   animation-duration: 700ms;
   animation-delay: 200ms;
-  animation-iteration-count: 2;
-  animation-timing-function: ease-in-out;
+  animation-iteration-count: 3;
   color: black;
   background: linear-gradient(
     210deg,
