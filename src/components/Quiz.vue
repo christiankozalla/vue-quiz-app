@@ -93,24 +93,20 @@ export default {
       if (this.questions.length === 0) {
         return false;
       }
-
-      /* If a user happens to miss out on a question, the modal shall still be displayed, when the user answeres the last question! */
-      let lastQuestionAnswered =
-        this.questions && this.questions[this.questions.length - 1].userAnswer;
-
       /* Check if all questions were answered */
       let questionsAnswered = 0;
       this.questions.forEach(function(question) {
         question.rightAnswer !== null ? questionsAnswered++ : null;
       });
-      return lastQuestionAnswered
-        ? true
-        : questionsAnswered === this.questions.length;
+      return questionsAnswered === this.questions.length;
     },
   },
   watch: {
     quizCompleted: function(completed) {
-      completed && this.$emit("quiz-completed", this.score);
+      completed &&
+        setTimeout(() => {
+          this.$emit("quiz-completed", this.score);
+        }, 3000);
     },
   },
   methods: {
@@ -173,7 +169,7 @@ export default {
             function() {
               this.index += 1;
             }.bind(this),
-            2200
+            3000
           );
         }
         if (question.userAnswer === question.correct_answer) {
@@ -182,6 +178,8 @@ export default {
           /* Set rightAnswer on question to true, computed property can track a streak out of 10 questions */
           this.questions[index].rightAnswer = true;
         } else {
+          /* Mark users answer as wrong answer */
+          event.target.classList.add("wrongAnswer");
           this.questions[index].rightAnswer = false;
           /* Show right Answer */
           let correctAnswer = this.questions[index].correct_answer;
@@ -260,11 +258,7 @@ button {
   padding: 1rem;
   margin: 0.3rem;
   width: 47%;
-  background: linear-gradient(
-    217deg,
-    rgba(0, 178, 72, 0.7),
-    rgba(0, 230, 118, 0.5)
-  );
+  background-color: rgba(100, 100, 100, 0.3);
   border: none;
   border-radius: 0.4rem;
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2);
@@ -285,53 +279,58 @@ button:active:enabled {
 }
 
 button.clicked {
-  border: 2px dashed #ff5983;
   pointer-events: none;
 }
 
-@keyframes joyfulButton {
+@keyframes flashButton {
   0% {
-    transform: rotate(0deg);
-  }
-  20% {
-    transform: rotate(-40deg);
-  }
-  85% {
-    transform: rotate(410deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes showRightAnswer {
-  0% {
-    opacity: 0.5;
+    opacity: 1;
     transform: scale(1.01);
   }
   50% {
-    opacity: 0.8;
-    transform: scale(1.03);
+    opacity: 0.7;
+    transform: scale(1.02);
   }
   100% {
-    opacity: 0.5;
-    transform: scale(1.01);
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 button.rightAnswer {
-  animation: joyfulButton;
-  animation-duration: 1500ms;
-  animation-delay: 100ms;
-  animation-timing-function: ease;
+  animation: flashButton;
+  animation-duration: 700ms;
+  animation-delay: 200ms;
+  animation-iteration-count: 3;
+  animation-timing-function: ease-in-out;
+  color: black;
+  background: linear-gradient(
+    210deg,
+    rgba(0, 178, 72, 0.25),
+    rgba(0, 178, 72, 0.5)
+  );
+}
+
+button.wrongAnswer {
+  color: black;
+  background: linear-gradient(
+    210deg,
+    rgba(245, 0, 87, 0.25),
+    rgba(245, 0, 87, 0.5)
+  );
 }
 
 button.showRightAnswer {
-  animation: showRightAnswer;
-  animation-duration: 800ms;
-  animation-iteration-count: 3;
+  animation: flashButton;
+  animation-duration: 700ms;
+  animation-delay: 200ms;
+  animation-iteration-count: 2;
   animation-timing-function: ease-in-out;
-  border: 2px dashed black;
   color: black;
+  background: linear-gradient(
+    210deg,
+    rgba(0, 178, 72, 0.25),
+    rgba(0, 178, 72, 0.5)
+  );
 }
 </style>
