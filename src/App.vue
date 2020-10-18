@@ -12,7 +12,10 @@
     />
     <footer>
       <p id="createdBy">
-        created by <a href="https://devdiary.me">Christian Kozalla</a>
+        created by
+        <a href="https://devdiary.me" target="_blank" rel="noopener"
+          >Christian Kozalla</a
+        >
       </p>
     </footer>
   </div>
@@ -74,6 +77,7 @@ footer {
   width: 100%;
   font-size: 0.7rem;
   background-color: rgb(102, 255, 166);
+  opacity: 0.7;
 }
 
 #createdBy {
