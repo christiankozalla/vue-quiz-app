@@ -11,18 +11,37 @@
           <div class="modal-body">
             <div id="score">
               You answered
-              {{
-                Math.floor(
-                  (quizScore.correctlyAnsweredQuestions /
-                    quizScore.allQuestions) *
-                    100
-                )
-              }}
-              % correctly! ({{ quizScore.correctlyAnsweredQuestions }} out of
-              {{ quizScore.answeredQuestions }} questions)
+              <span class="highlight"
+                >{{
+                  Math.floor(
+                    (quizScore.correctlyAnsweredQuestions /
+                      quizScore.allQuestions) *
+                      100
+                  )
+                }}
+                % correctly!</span
+              >
+              Answered
+              <span class="highlight"
+                >{{ quizScore.correctlyAnsweredQuestions }} out of
+                {{ quizScore.answeredQuestions }}</span
+              >
+              questions.
             </div>
             <div id="chooseCategory">
-              Wanna choose another category? (I am working on this feature!)
+              Wanna choose another category?
+
+              <a
+                href="https://twitter.com/messages/compose?recipient_id=1315961855148523521&text=Hello%20Christian%20I%20would%20like%20to%20choose%20other%20categories%20with%20headsUP"
+                class="twitter-dm-button"
+                data-screen-name="@CKozalla"
+              >
+                <img
+                  src="@/assets/Twitter_Logo_WhiteOnBlue.png"
+                  alt="Twitter Logo"
+                  class="twitter-logo"
+                />Demand that feature!
+              </a>
             </div>
           </div>
 
@@ -101,7 +120,10 @@ export default {
 }
 
 .modal-body {
+  display: flex;
+  flex-direction: column;
   margin: 20px 0;
+  line-height: 3rem;
 }
 
 .modal-body > * {
@@ -134,6 +156,44 @@ export default {
   transform: scale(1.02);
 }
 
+.anchor-footer {
+  color: black;
+  text-decoration: none;
+  cursor: default;
+}
+
+.highlight {
+  border-radius: 4px;
+  background-color: rgba(187, 0, 47, 0.3);
+  padding: 0.25rem 0.5rem;
+}
+
+.twitter-dm-button {
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+  background-color: #1da1f2;
+  padding: 0 2rem;
+  border-radius: 7px;
+  text-decoration: none;
+  color: black;
+  margin: 0 auto;
+}
+
+.twitter-logo {
+  width: 48px;
+  height: 48px;
+}
+
+#score {
+  background-color: rgb(210, 200, 200);
+  border-radius: 5px;
+  box-shadow: 2px 3px 9px gray;
+}
+
+#chooseCategory {
+  text-align: center;
+}
 /*
  * The following styles are auto-applied to elements with
  * transition="modal" when their visibility is toggled

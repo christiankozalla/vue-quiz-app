@@ -3,9 +3,13 @@
     <img id="logo-crown" src="@/assets/crown.svg" alt="headsUP Crown" />
     <h1 id="logo-headline">headsUP</h1>
 
-    <div id="correctAnswers">
+    <div class="centerText">
       You have
       <strong>{{ correctAnswers }} correct {{ pluralizeAnswer }}!</strong>
+    </div>
+
+    <div class="centerText">
+      Currently at question {{ index + 1 }} of {{ questions.length }}
     </div>
     <hr class="divider" />
     <div>
@@ -206,7 +210,7 @@ export default {
   max-width: 750px;
 }
 
-#correctAnswers {
+.centerText {
   text-align: center;
 }
 
