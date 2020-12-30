@@ -10,6 +10,7 @@
       @reload="updateQuiz"
       @close="showModal = false"
     />
+    <TutorialAd />
     <footer>
       <p id="createdBy">
         created by
@@ -25,6 +26,7 @@
 import Nav from "@/components/Nav.vue";
 import Quiz from "@/components/Quiz.vue";
 import Modal from "@/components/Modal.vue";
+import TutorialAd from "@/components/TutorialAd.vue";
 
 export default {
   name: "App",
@@ -32,6 +34,7 @@ export default {
     Nav,
     Quiz,
     Modal,
+    TutorialAd,
   },
   data() {
     return {
