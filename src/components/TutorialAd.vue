@@ -8,6 +8,19 @@
       >
       🚀
     </h1>
+    <h2>
+      🔥
+      <a href="https://chrisko.io/posts/vue-tutorial-frontend-quiz-app-headsup">
+        Tutorial Part I
+      </a>
+      and
+      <a
+        href="https://chrisko.io/posts/vue-tutorial-build-a-frontend-quiz-app-with-custom-events"
+      >
+        Tutorial Part II
+      </a>
+      🔥
+    </h2>
   </div>
 </template>
 
