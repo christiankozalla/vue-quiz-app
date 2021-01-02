@@ -116,7 +116,7 @@ export default {
   methods: {
     getQuestions: async function() {
       let quiz = [];
-      await fetch("https://opentdb.com/api.php?amount=10&category=9")
+      await fetch("https://opentdb.com/api.php?amount=5&category=9")
         .then((res) => res.json())
         .then((jsonResponse) => {
           let index = 0;
