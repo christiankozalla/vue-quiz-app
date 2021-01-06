@@ -68,8 +68,9 @@ export default {
         c: "https://vue-quiz-app.christiankozalla.vercel.app/crown.png",
       },
       { p: "og:type", c: "website" },
-      { p: "twitter:site", c: "@CKozalla" },
-      { p: "twitter:card", c: "summary" },
+      { n: "twitter:site", c: "@CKozalla" },
+      { n: "twitter:card", c: "summary" },
+      { n: "twitter:creator", c: "@CKozalla" },
     ],
   },
   data() {
