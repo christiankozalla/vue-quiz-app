@@ -47,16 +47,11 @@ export default {
         content: "Tutorial: A Vue Frontend Quiz App",
         id: "desc",
       }, // id to replace intead of create element
-      // ...
-      // Twitter
-      { name: "twitter:title", content: "Vue Tutorial - Frontend Quiz App" },
-      // with shorthand
-      {
-        n: "twitter:description",
-        c:
-          "Advanced Tutorial: A Vue Frontend Quiz App - for Web Development Beginners",
-      },
       { property: "og:title", content: "Tutorial: A Vue Frontend Quiz App" },
+      {
+        property: "og:url",
+        content: "https://vue-quiz-app.christiankozalla.vercel.app/",
+      },
       {
         p: "og:description",
         c:
@@ -67,7 +62,6 @@ export default {
         p: "og:image",
         c: "https://vue-quiz-app.christiankozalla.vercel.app/crown.png",
       },
-      { p: "og:type", c: "website" },
       { n: "twitter:site", c: "@CKozalla" },
       { n: "twitter:card", c: "summary" },
       { n: "twitter:creator", c: "@CKozalla" },
