@@ -65,8 +65,7 @@ export default {
       // with shorthand
       {
         p: "og:image",
-        c:
-          "https://vue-quiz-app.christiankozalla.vercel.app/img/crown.4f514537.svg",
+        c: "https://vue-quiz-app.christiankozalla.vercel.app/crown.png",
       },
       { p: "og:type", c: "website" },
       { p: "twitter:site", c: "@CKozalla" },
