@@ -36,6 +36,42 @@ export default {
     Modal,
     TutorialAd,
   },
+  head: {
+    title: {
+      inner: "Vue Tutorial - Frontend Quiz App",
+    },
+    meta: [
+      { name: "application-name", content: "Vue Tutorial - Frontend Quiz App" },
+      {
+        name: "description",
+        content: "Tutorial: A Vue Frontend Quiz App",
+        id: "desc",
+      }, // id to replace intead of create element
+      // ...
+      // Twitter
+      { name: "twitter:title", content: "Vue Tutorial - Frontend Quiz App" },
+      // with shorthand
+      {
+        n: "twitter:description",
+        c:
+          "Advanced Tutorial: A Vue Frontend Quiz App - for Web Development Beginners",
+      },
+      // ...
+      // Facebook / Open Graph
+      { property: "og:title", content: "Tutorial: A Vue Frontend Quiz App" },
+      {
+        p: "og:description",
+        c:
+          "Advanced Tutorial: A Vue Frontend Quiz App - for Web Development Beginners",
+      },
+      // with shorthand
+      {
+        p: "og:image",
+        c:
+          "https://vue-quiz-app.christiankozalla.vercel.app/img/crown.4f514537.svg",
+      },
+    ],
+  },
   data() {
     return {
       quizKey: 0,
