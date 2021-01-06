@@ -56,8 +56,6 @@ export default {
         c:
           "Advanced Tutorial: A Vue Frontend Quiz App - for Web Development Beginners",
       },
-      // ...
-      // Facebook / Open Graph
       { property: "og:title", content: "Tutorial: A Vue Frontend Quiz App" },
       {
         p: "og:description",
@@ -70,6 +68,9 @@ export default {
         c:
           "https://vue-quiz-app.christiankozalla.vercel.app/img/crown.4f514537.svg",
       },
+      { p: "og:type", c: "website" },
+      { p: "twitter:site", c: "@CKozalla" },
+      { p: "twitter:card", c: "summary" },
     ],
   },
   data() {
